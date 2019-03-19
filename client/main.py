@@ -58,17 +58,17 @@ def refreshState(state, buttons, serverMsg):
 	if state == S_STBY and buttons == 'CALL':
 		print('Changing to state Hold')
 		state = S_HOLD
-	elif state == S_HOLD and serverMsg == 'RESPOND':
+	elif state == S_HOLD and serverMsg == b'RESPOND':
 		print('Changing to state Call')
 		state = S_CALL
-	elif state == S_CALL and serverMsg == 'STOP':
+	elif state == S_CALL and serverMsg == b'STOP':
 		print('Changing to state stand-by')
 		state = S_STBY
 	return state
 
 def respondToServer(state, s):
 	if state == S_HOLD:
-		s.sendall('CALL')
+		s.sendall(b'CALL')
 		
 
 def doActions(state):
@@ -87,10 +87,16 @@ def main():
 		print('Connecting to server')
 		s.connect((SERVER_IP, MESSAGES_PORT))
 		print('Connected succesfully')
-		
+
+		s.settimeout(1.0)	
+
 		while (True):
 			buttons = readButtons()
-			serverMsg = s.recv(1024) #read server
+			serverMsg = ""
+			try:
+				serverMsg = s.recv(1024) #read server
+			except socket.timeout as err:
+				pass
 			state = refreshState(state, buttons, serverMsg)		
 	
 			respondToServer(state, s)

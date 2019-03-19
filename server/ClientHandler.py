@@ -1,9 +1,7 @@
 import socket
 import time
 from threading import Thread
-
-AUDIO_PORT_OUT = 50010
-AUDIO_PORT_IN = 50011
+from AudioThread import AudioThread
 
 S_STBY = 1
 S_WAIT = 2
@@ -19,11 +17,12 @@ class ClientHandler(Thread):
 		self.conn.settimeout(1.0)
 
 		self.ip, self.port = conn.getsockname()
+		self.audio = AudioThread(self.ip)
+
 		self.active = True
 		self.intf_msg = ''
 		self.client_msg = ''
 		self.start()
-
 	def refreshState(self, state):
 		if state == S_STBY and self.client_msg == b'CALL':
 			state = S_WAIT
@@ -43,10 +42,13 @@ class ClientHandler(Thread):
 
 	def doActions(self, state):
 		if state == S_STBY:
+			self.audio.stop()
 			print('Stop thread')
 		elif state == S_WAIT:
+			self.audio.prepare()
 			print('Init thread')
 		elif state == S_CALL:
+			self.audio.start()
 			print('Start thread')
 
 	def run(self):

@@ -2,13 +2,15 @@ import relayCommand
 from tkinter import *
 from Blinker import *
 
+import myGlobals as G
+
 class Alarm:
 	ON = 1
 	OFF = 0
 	def __init__(self):
 		D.P("Initialized alarm")
 		self.relayId = 15
-		self.name = "Stop\nAlarm"
+		self.name = "END\nCALL"
 		self.width = 100
 		self.height = 70
 		self.x_poz = 350
@@ -36,6 +38,10 @@ class Alarm:
 		return False
 
 	def refresh(self):
+		global alarmPressed
+		##
+		G.alarmPressed = True
+		##
 		#stop blinker
 		self.unSet()
 

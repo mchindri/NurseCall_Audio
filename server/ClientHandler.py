@@ -3,6 +3,9 @@ import time
 from threading import Thread
 from AudioThread import AudioThread
 
+import myGlobals as G
+
+
 S_STBY = 1
 S_WAIT = 2
 S_CALL = 3
@@ -25,6 +28,7 @@ class ClientHandler(Thread):
 		self.start()
 	def refreshState(self, state):
 		if state == S_STBY and self.client_msg == b'CALL':
+			G.event.on_change(5)
 			state = S_WAIT
 		elif state == S_WAIT and self.intf_msg == 'RESPOND':
 			state = S_CALL
@@ -61,7 +65,17 @@ class ClientHandler(Thread):
 					self.client_msg = self.conn.recv(1024)
 				except socket.timeout as err:
 					pass
+				global callPressed
+				global alarmPressed
+				if G.callPressed == True:
+					self.intf_msg = 'RESPOND'
+					G.callPressed = False
+
+				if G.alarmPressed == True:
+					self.intf_msg = 'STOP'
+					G.alarmPressed = False			
 				
+	
 				state = self.refreshState(state)
 				self.respondToClient(state)
 				self.doActions(state)

@@ -4,6 +4,7 @@ import debug as D
 import threading
 
 
+from myGlobals import *
 
 class InputButton(object):
 	"""description of class"""
@@ -36,7 +37,9 @@ class InputButton(object):
 		self.activationCallback()
 
 	def addEvent(self):
-		D.P("Setting callback for button " + str(self.buttonID))
+		D.P("Setting callback for button " + str(self.buttonID))	
+		if self.buttonID == 5:
+			event.on_change += self.activateSwitch
 		GPIO.add_event_detect(self.buttonID, GPIO.RISING,
 								callback = self.activateSwitch) 
 

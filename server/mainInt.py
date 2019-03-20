@@ -16,7 +16,7 @@ def main():
 	
 	alarm = Alarm()
 
-#	myMain.do()   
+	myMain.do()   
 
 	myInterface = Interface(buttons, alarm)
 	myInterface.start()

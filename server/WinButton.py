@@ -4,6 +4,8 @@ import debug as d
 import relayCommand
 import Alarm
 
+import myGlobals as G
+
 class WinButton(object):
 	def __init__(self, id, relayId, name, width, height, x_poz, y_poz, color):
 		self.winRef = None
@@ -32,6 +34,10 @@ class WinButton(object):
 		self.alarm.set()
 	
 	def refresh(self):
+		if self.id == 5:
+			if G.callPressed == False:
+				G.callPressed = True
+			print ('Pressed Room 5')
 		D.P("Refresh button " + str(self.name))
 		relayCommand.unsetRelay(self.relayId)
 		self.blinker.stop()

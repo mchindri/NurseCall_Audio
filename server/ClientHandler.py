@@ -10,13 +10,13 @@ S_CALL = 3
 
 class ClientHandler(Thread):
 	
-	def __init__(self, conn):
+	def __init__(self, conn, addr):
 		Thread.__init__(self)
 		self.conn = conn
 
 		self.conn.settimeout(1.0)
 
-		self.ip, self.port = conn.getsockname()
+		self.ip, self.port = addr
 		self.audio = AudioThread(self.ip)
 
 		self.active = True

@@ -23,7 +23,7 @@ def main():
 			conn, addr = s.accept()
 			print('Client connected')
 
-			newClient = ClientHandler(conn)
+			newClient = ClientHandler(conn, addr)
 
 			i = 0
 			while True:
@@ -32,11 +32,11 @@ def main():
 
 				if i == 20:
 					newClient.intf_msg = "STOP"
+					i = 0
 				i = i + 1	
 				time.sleep(1.0)
 
 			connectedClients.append(newClient)	
-			print('Connected by' + str(addr))
 	finally:
 		s.close()
 

@@ -6,7 +6,6 @@ import wave
 import time
 import traceback
 
-
 AUDIO_PORT = 50010
 
 CHUNK = 8192
@@ -59,25 +58,23 @@ class ServerThread(Thread):
 		self.p = None
 		self.stream = None
 		self.s = None
-		try:
+		try:	
 			self.p = pyaudio.PyAudio()
-			self.stream = self.p.open(format=p.get_format_from_width(WIDTH),
+			self.stream = self.p.open(format=self.p.get_format_from_width(WIDTH),
 					channels = CHANNELS,
 					rate = RATE,
 					output = True,
 					frames_per_buffer=CHUNK)
-
-
+			
 			self.s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 			self.s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 			#init interface
 			self.s.bind(('', AUDIO_PORT))
 			self.s.listen(1)
-			self.conn, self.addr = self.s.accept()
-			
 			self.active = True
 			self.start()
 		except Exception:
+			traceback.print_exc()
 			if self.stream:
 				self.stream.stop_stream()
 				self.stream.close()
@@ -87,22 +84,31 @@ class ServerThread(Thread):
 				self.s.close()
 
 	def run(self):
+
+		print('Server waiting for audio client')
+		self.conn, self.addr = self.s.accept()
+		print('Audio client connected ... Starting Audio')	
 		while self.active:
-			data.recv(CHUNK)
-			stream.write(data)
+			try:
+				#print('RecivingAudio')
+				data = self.conn.recv(CHUNK)
+				#print(['Recived: ', str(data)])
+				self.stream.write(data)		
+			except:
+				traceback.print_exc()
+
 
 	def end(self):
 		self.active = False
 		time.sleep(0.1)
 		if self.stream:
-			self.stream.stop_strem()
+			self.stream.stop_stream()
 			self.stream.close()
 		if self.p:
 			self.p.terminate();
 		if self.s:
 			self.s.close()
-		self.conn.close()
-
+		
 
 
 
@@ -116,22 +122,23 @@ class ClientThread(Thread):
 		self.stream = None
 		self.s = None
 		try:
+			
 			self.p = pyaudio.PyAudio()
 			self.stream = self.p.open(format = FORMAT,
 				channels = CHANNELS,
 				rate = RATE,
 				input = True,
 				frames_per_buffer = CHUNK)
-
-
+			
 			self.s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 			self.s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 			#init interface
 			self.s.connect((self.ip, AUDIO_PORT))	
-			
+			print(['connecting to ', self.ip])	
 			self.active = True
 			self.start()
 		except Exception:
+			traceback.print_exc()
 			if self.stream:
 				self.stream.stop_stream()
 				self.stream.close()
@@ -142,18 +149,22 @@ class ClientThread(Thread):
 
 	def run(self):
 		while self.active:
-			data = self.stream.read(CHUNK, exception_on_overflow = False)
-			self.s.sendall(data)			
+			try:
+				data = self.stream.read(CHUNK, exception_on_overflow = False)
+				#print('SendingAudio')
+				#data = b"usless data"
+				self.s.sendall(data)			
+			except:
+				traceback.print_exc()
 
 	def end(self):
 		self.active = False
 		time.sleep(0.1)
 		if self.stream:
-			self.stream.stop_strem()
+			self.stream.stop_stream()
 			self.stream.close()
 		if self.p:
 			self.p.terminate();
 		if self.s:
 			self.s.close()
-		self.conn.close()
 

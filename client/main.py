@@ -4,6 +4,7 @@ import wave
 import time
 import RPi.GPIO as GPIO
 import threading
+from AudioThread import AudioThread
 
 
 GREEN = 7
@@ -30,7 +31,7 @@ S_STBY = 2
 S_CALL = 3
 
 
-
+audio = AudioThread(SERVER_IP)
 
 def setLeds(state):
 	if state == S_CALL:
@@ -73,10 +74,13 @@ def respondToServer(state, s):
 
 def doActions(state):
 	if state == S_STBY:
+		audio.stop()
 		print('Stop thread')
 	elif state == S_HOLD:
+		audio.prepare()
 		print('Init thread')
 	elif state == S_CALL:
+		audio.start()
 		print('Start thread')
 
 def main():

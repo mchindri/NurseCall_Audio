@@ -4,29 +4,55 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bgquote4"
+
     tools:context=".room1_activity">
+
+
+    <ListView
+        android:id="@+id/listview"
+        android:layout_width="288dp"
+        android:layout_height="259dp"
+        android:layout_marginStart="106dp"
+        android:layout_marginTop="69dp"
+        android:layout_marginEnd="411dp"
+        android:layout_marginBottom="16dp"
+        android:dividerHeight="1dp"
+        android:scrollbars="vertical"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout"
+        app:layout_constraintVertical_bias="0.805">
+
+
+    </ListView>
+
 
     <RelativeLayout
         android:id="@+id/relativeLayout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:layout_editor_absoluteX="106dp"
-        tools:layout_editor_absoluteY="16dp">
+        android:layout_width="916dp"
+        android:layout_height="312dp"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="5dp">
 
-        <ListView
-            android:id="@+id/listview"
-            android:layout_width="337dp"
-            android:layout_height="330dp"
-            android:layout_marginStart="106dp"
-            android:layout_marginTop="69dp"
-            android:layout_marginEnd="411dp"
-            android:layout_marginBottom="16dp"
-            android:dividerHeight="1dp"
-            android:scrollbars="vertical"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/relativeLayout"></ListView>
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="88dp"
+            android:layout_marginLeft="88dp"
+            android:layout_marginTop="271dp"
+            android:text="Room1 patients:"
+            android:textColor="@color/white"
+            android:textSize="30dp"
+            tools:layout_editor_absoluteX="381dp"
+            tools:layout_editor_absoluteY="173dp" />
 
         <Button
             android:id="@+id/button_back_room1"
@@ -35,10 +61,75 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="500dp"
-            android:layout_marginLeft="40dp"
-            android:layout_marginTop="1dp"
+            android:layout_marginStart="799dp"
+            android:layout_marginLeft="799dp"
+            android:layout_marginTop="8dp"
             android:text="BACK" />
+
+        <ImageButton
+            android:id="@+id/call"
+            android:layout_width="73dp"
+            android:layout_height="71dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="82dp"
+            android:layout_marginLeft="82dp"
+            android:layout_marginTop="46dp"
+            android:background="#0000"
+
+
+            android:scaleType="fitXY"
+            android:src="@drawable/call"
+            app:srcCompat="@drawable/call" />
+
+        <ImageButton
+            android:id="@+id/endcall"
+            android:layout_width="75dp"
+            android:layout_height="69dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="82dp"
+
+            android:layout_marginLeft="82dp"
+            android:layout_marginTop="146dp"
+            android:layout_marginBottom="97dp"
+            android:background="#0000"
+            android:scaleType="fitXY"
+
+            android:src="@drawable/endcall"
+            app:srcCompat="@drawable/endcall" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="196dp"
+            android:layout_marginLeft="196dp"
+            android:layout_marginTop="60dp"
+            android:text="Call"
+            android:textColor="@color/white"
+            android:textSize="30dp" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="198dp"
+            android:layout_marginLeft="198dp"
+            android:layout_marginTop="159dp"
+            android:text="End Call"
+            android:textColor="@color/white"
+            android:textSize="30dp" />
+
     </RelativeLayout>
 
 </android.support.constraint.ConstraintLayout>

@@ -9,34 +9,12 @@
     tools:context=".room1_activity">
 
 
-    <ListView
-        android:id="@+id/listview"
-        android:layout_width="288dp"
-        android:layout_height="259dp"
-        android:layout_marginStart="106dp"
-        android:layout_marginTop="69dp"
-        android:layout_marginEnd="411dp"
-        android:layout_marginBottom="16dp"
-        android:dividerHeight="1dp"
-        android:scrollbars="vertical"
-        android:textColor="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/relativeLayout"
-        app:layout_constraintVertical_bias="0.805">
-
-
-    </ListView>
-
-
     <RelativeLayout
         android:id="@+id/relativeLayout"
-        android:layout_width="916dp"
-        android:layout_height="312dp"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="5dp">
+        android:layout_width="956dp"
+        android:layout_height="330dp"
+        tools:layout_editor_absoluteX="63dp"
+        tools:layout_editor_absoluteY="0dp">
 
         <TextView
             android:id="@+id/textView3"
@@ -45,9 +23,9 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="88dp"
-            android:layout_marginLeft="88dp"
-            android:layout_marginTop="271dp"
+            android:layout_marginStart="175dp"
+            android:layout_marginLeft="175dp"
+            android:layout_marginTop="288dp"
             android:text="Room1 patients:"
             android:textColor="@color/white"
             android:textSize="30dp"
@@ -61,9 +39,9 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="799dp"
-            android:layout_marginLeft="799dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginStart="866dp"
+            android:layout_marginLeft="866dp"
+            android:layout_marginTop="9dp"
             android:text="BACK" />
 
         <ImageButton
@@ -73,9 +51,9 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="82dp"
-            android:layout_marginLeft="82dp"
-            android:layout_marginTop="46dp"
+            android:layout_marginStart="26dp"
+            android:layout_marginLeft="26dp"
+            android:layout_marginTop="45dp"
             android:background="#0000"
 
 
@@ -85,17 +63,17 @@
 
         <ImageButton
             android:id="@+id/endcall"
-            android:layout_width="75dp"
-            android:layout_height="69dp"
+            android:layout_width="80dp"
+            android:layout_height="72dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginStart="82dp"
+            android:layout_marginStart="181dp"
 
-            android:layout_marginLeft="82dp"
-            android:layout_marginTop="146dp"
-            android:layout_marginBottom="97dp"
+            android:layout_marginLeft="181dp"
+            android:layout_marginTop="44dp"
+            android:layout_marginBottom="214dp"
             android:background="#0000"
             android:scaleType="fitXY"
 
@@ -109,9 +87,9 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="196dp"
-            android:layout_marginLeft="196dp"
-            android:layout_marginTop="60dp"
+            android:layout_marginStart="116dp"
+            android:layout_marginLeft="116dp"
+            android:layout_marginTop="63dp"
             android:text="Call"
             android:textColor="@color/white"
             android:textSize="30dp" />
@@ -123,13 +101,73 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="198dp"
-            android:layout_marginLeft="198dp"
-            android:layout_marginTop="159dp"
+            android:layout_marginStart="295dp"
+            android:layout_marginLeft="295dp"
+            android:layout_marginTop="61dp"
             android:text="End Call"
             android:textColor="@color/white"
             android:textSize="30dp" />
 
     </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout2"
+        android:layout_width="481dp"
+        android:layout_height="370dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="472dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.335"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout"
+        app:layout_constraintVertical_bias="0.495">
+
+        <ListView
+            android:id="@+id/listview"
+            android:layout_width="370dp"
+            android:layout_height="253dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="37dp"
+            android:layout_marginLeft="37dp"
+            android:layout_marginTop="25dp"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="330dp">
+
+
+        </ListView>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="498dp"
+        android:layout_height="457dp"
+        android:layout_marginStart="13dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/relativeLayout2"
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout">
+
+        <ListView
+            android:id="@+id/listview2"
+            android:layout_width="370dp"
+            android:layout_height="253dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="44dp"
+            android:layout_marginLeft="44dp"
+            android:layout_marginTop="27dp"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="330dp">
+
+
+        </ListView>
+    </RelativeLayout>
+
 
 </android.support.constraint.ConstraintLayout>

@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
         listview = findViewById(R.id.listview);
         checkbox_1 = findViewById(R.id.checkBox_1);
 
-
+        new AudioServer().start();
 
         final Animation anim = new AlphaAnimation(0.0f, 1.0f);
         anim.setDuration(150); //You can manage the blinking time with this parameter

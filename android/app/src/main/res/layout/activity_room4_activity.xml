@@ -1,21 +1,204 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:layout_editor_absoluteX="8dp"
-    tools:layout_editor_absoluteY="8dp"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/bgquote4"
+
+    tools:context=".room1_activity">
 
 
-    <Button
-        android:id="@+id/button_back_room4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="500dp"
-        android:layout_marginLeft="838dp"
-        android:layout_marginTop="21dp"
-        android:text="BACK" />
-</RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="460dp"
+        android:layout_marginTop="40dp"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout"
+        tools:layout_editor_absoluteX="0dp">
+
+        <RelativeLayout
+            android:layout_width="498dp"
+            android:layout_height="457dp"
+            android:layout_marginStart="13dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/relativeLayout2"
+            app:layout_constraintTop_toBottomOf="@+id/relativeLayout">
+
+            <ListView
+                android:id="@+id/listview"
+                android:layout_width="370dp"
+                android:layout_height="253dp"
+                android:layout_below="@+id/textView10"
+                android:layout_marginStart="59dp"
+                android:layout_marginLeft="59dp"
+                android:layout_marginTop="21dp"
+                android:dividerHeight="1dp"
+                android:divider="@color/whitee"
+                android:background="@color/black"
+                tools:layout_editor_absoluteX="0dp"
+                tools:layout_editor_absoluteY="330dp">
+
+
+            </ListView>
+
+            <TextView
+                android:id="@+id/textView10"
+                android:layout_width="225dp"
+                android:layout_height="52dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="129dp"
+                android:layout_marginLeft="129dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="144dp"
+                android:text="Room1 patients"
+                android:textColor="@color/white"
+                android:textSize="30dp"
+                tools:layout_editor_absoluteX="381dp"
+                tools:layout_editor_absoluteY="173dp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/relativeLayout2"
+            android:layout_width="481dp"
+            android:layout_height="370dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="472dp"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.335"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/relativeLayout"
+            app:layout_constraintVertical_bias="0.495">
+
+            <ListView
+                android:id="@+id/listview2"
+                android:layout_width="370dp"
+                android:layout_height="253dp"
+                android:layout_below="@+id/textView3"
+                android:layout_marginStart="68dp"
+                android:layout_marginLeft="68dp"
+                android:layout_marginTop="38dp"
+                android:dividerHeight="1dp"
+                android:divider="@color/whitee"
+                android:background="@color/sblack"
+                tools:layout_editor_absoluteX="0dp"
+                tools:layout_editor_absoluteY="330dp">
+
+
+            </ListView>
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="112dp"
+                android:layout_marginLeft="112dp"
+                android:layout_marginTop="36dp"
+                android:text="Medication schedule"
+                android:textColor="@color/white"
+                android:textSize="30dp"
+                tools:layout_editor_absoluteX="381dp"
+                tools:layout_editor_absoluteY="173dp" />
+
+        </RelativeLayout>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="956dp"
+        android:layout_height="262dp"
+        tools:layout_editor_absoluteX="95dp"
+        tools:layout_editor_absoluteY="52dp">
+
+        <Button
+            android:id="@+id/button_back_room2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="837dp"
+            android:layout_marginLeft="837dp"
+            android:layout_marginTop="68dp"
+            android:text="BACK" />
+
+        <ImageButton
+            android:id="@+id/call"
+            android:layout_width="73dp"
+            android:layout_height="71dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="57dp"
+            android:layout_marginLeft="57dp"
+            android:layout_marginTop="45dp"
+            android:background="#0000"
+
+
+            android:scaleType="fitXY"
+            android:src="@drawable/call"
+            app:srcCompat="@drawable/call" />
+
+        <ImageButton
+            android:id="@+id/endcall"
+            android:layout_width="76dp"
+            android:layout_height="71dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="246dp"
+
+            android:layout_marginLeft="246dp"
+            android:layout_marginTop="43dp"
+            android:layout_marginBottom="148dp"
+            android:background="#0000"
+            android:scaleType="fitXY"
+
+            android:src="@drawable/endcall"
+            app:srcCompat="@drawable/endcall" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="154dp"
+            android:layout_marginLeft="154dp"
+            android:layout_marginTop="66dp"
+            android:text="Call"
+            android:textColor="@color/white"
+            android:textSize="30dp" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="359dp"
+            android:layout_marginLeft="359dp"
+            android:layout_marginTop="62dp"
+            android:text="End Call"
+            android:textColor="@color/white"
+            android:textSize="30dp" />
+
+    </RelativeLayout>
+
+
+</android.support.constraint.ConstraintLayout>

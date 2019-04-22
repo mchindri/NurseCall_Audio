@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
         listview = findViewById(R.id.listview);
         checkbox_1 = findViewById(R.id.checkBox_1);
 
-        new AudioServer().start();
+       // new AudioServer().start();
 
         final Animation anim = new AlphaAnimation(0.0f, 1.0f);
         anim.setDuration(150); //You can manage the blinking time with this parameter
@@ -77,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
         button_room3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openRoom4();
+                openRoom3();
             }
         });
 

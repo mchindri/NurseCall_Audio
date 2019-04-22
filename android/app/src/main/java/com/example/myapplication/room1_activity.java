@@ -18,7 +18,7 @@ import java.util.ArrayList;
 public class room1_activity extends AppCompatActivity {
 
     ListView listview, listview2;
-    String[] items = {"Pop Alexandru", "Chindris Mihai", "Alex pop"};
+
     ImageButton call;
     ImageButton endcall;
 

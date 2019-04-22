@@ -14,7 +14,7 @@ SOS_BUTTON = 24
 
 
 #ipInitialization
-SERVER_IP = '192.168.43.180'
+SERVER_IP = '192.168.1.113'
 MESSAGES_PORT = 50007
 
 #states

@@ -5,6 +5,7 @@ import android.util.Log;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
@@ -15,8 +16,10 @@ public class AudioServer extends Thread {
     String line;
     private ServerSocket server;
     private Socket client;
+    Socket socket;
     private BufferedReader in;
     private PrintWriter out;
+
 
     public AudioServer()
     {
@@ -24,27 +27,33 @@ public class AudioServer extends Thread {
 
     public void run()
     {
-/*
+
         listenSocket();
+        try {
+            socket = server.accept();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         while(true){
             try{
                 line = in.readLine();
-
                 //Send data back to client
-                out.println(line);
+
+
                 Log.d("MY_TAG","From client:" + line);
             } catch (IOException e) {
                 Log.d("MY_TAG", "Read failed");
                 System.exit(-1);
             }
         }
-*/
+
     }
 
     public void listenSocket(){
         Log.d("MY_TAG", "Starting server");
         try{
             server = new ServerSocket(50007);
+
         } catch (IOException e) {
             Log.d("MY_TAG", "Could not listen on port 50007");
             System.exit(-1);

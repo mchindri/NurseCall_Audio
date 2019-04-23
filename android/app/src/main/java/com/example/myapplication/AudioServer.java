@@ -1,5 +1,8 @@
 package com.example.myapplication;
 
+import android.media.AudioFormat;
+import android.media.AudioManager;
+import android.media.AudioTrack;
 import android.util.Log;
 
 import java.io.BufferedReader;
@@ -17,7 +20,7 @@ public class AudioServer extends Thread {
     private ServerSocket server;
     private Socket client;
     Socket socket;
-    private BufferedReader in;
+    private InputStream in;
     private PrintWriter out;
 
 
@@ -25,25 +28,51 @@ public class AudioServer extends Thread {
     {
     }
 
+    public void playWav(AudioTrack at, byte[] buff, int len)
+    {
+    }
+
     public void run()
     {
 
+        //format 2
+        //channels 2
+        //frmae rate 44100
+        int minBufferSize = AudioTrack.getMinBufferSize(44100, AudioFormat.CHANNEL_IN_STEREO, AudioFormat.ENCODING_PCM_16BIT);
+        int bufferSize = 1024;
+        if (minBufferSize > bufferSize)
+            bufferSize = minBufferSize;
+        AudioTrack at = new AudioTrack(AudioManager.STREAM_MUSIC, 44100, AudioFormat.CHANNEL_IN_STEREO, AudioFormat.ENCODING_PCM_16BIT, bufferSize , AudioTrack.MODE_STREAM);
+        at.play();
+
         listenSocket();
-        try {
-            socket = server.accept();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
         while(true){
             try{
-                line = in.readLine();
+
+                int CHUNK = 1024;
+                byte[] buff = new byte[CHUNK + 1];
+
+                int len;
+                while ((len = in.read(buff, 0, CHUNK)) > -1)
+                {
+                    at.write(buff, 0, len);
+                }
                 //Send data back to client
+                out.println("Response");
 
-
-                Log.d("MY_TAG","From client:" + line);
             } catch (IOException e) {
                 Log.d("MY_TAG", "Read failed");
                 System.exit(-1);
+            }
+            catch (Exception e)
+            {
+                Log.d("MY_TAG", e.getMessage());
+                System.exit(-1);
+            }
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
         }
 
@@ -56,6 +85,9 @@ public class AudioServer extends Thread {
 
         } catch (IOException e) {
             Log.d("MY_TAG", "Could not listen on port 50007");
+            Log.d("MY_TAG", e.getMessage()
+            );
+
             System.exit(-1);
         }
 
@@ -72,8 +104,7 @@ public class AudioServer extends Thread {
 
         //listenSocketBufferedReaderclientPrintWriter
         try{
-            in = new BufferedReader(new InputStreamReader(
-                    client.getInputStream()));
+            in = client.getInputStream();
             out = new PrintWriter(client.getOutputStream(),
                     true);
         } catch (IOException e) {

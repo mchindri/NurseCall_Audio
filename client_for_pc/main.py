@@ -14,7 +14,7 @@ SOS_BUTTON = 24
 
 
 #ipInitialization
-SERVER_IP = '192.168.43.180'
+SERVER_IP = '192.168.1.102'
 MESSAGES_PORT = 50007
 
 #states
@@ -28,6 +28,9 @@ audio = AudioThread(SERVER_IP)
 def sendAudio(server):
 	CHUNK = 1024
 	wf = wave.open('myAudio.wav', 'rb')
+	print(wf.getsampwidth())
+	print(wf.getnchannels())
+	print(wf.getframerate())
 	p = pyaudio.PyAudio()
 
 	'''
@@ -38,9 +41,6 @@ def sendAudio(server):
 					output=True)
 	'''
 
-	print(['format: ', str(wf.getsampwidth())])
-	print(['channels: ', str(wf.getnchannels)])
-	print(['rate: ', str(wf.getframerate)])
 	# read data
 	data = wf.readframes(CHUNK)
 	while len(data) > 0:
@@ -100,6 +100,7 @@ def doActions(state):
 
 def main():
 	print('Client started')
+	
 	s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 	state = S_STBY
 	try:	

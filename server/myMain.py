@@ -18,17 +18,19 @@ def do():
 		s.bind((HOST, MESSAGES_PORT))
 		s.listen()
 		print('Server started')
-		print('Waiting connection')
-		conn, addr = s.accept()
-		print('Client connected')
-
-		newClient = ClientHandler(conn, addr)
+		i = 0
+		while i < 3:
+			print(['Waiting connection nb ', str(i)])
+			conn, addr = s.accept()
+			print('Client connected')
+			newClient = ClientHandler(conn, addr)
+			connectedClients.append(newClient)
+			i = i + 1
 
 		
-		connectedClients.append(newClient)	
 	finally:
 		pass
 		#s.close()
 
 if __name__ == "__main__":
-	main()
+	do()

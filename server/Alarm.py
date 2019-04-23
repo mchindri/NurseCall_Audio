@@ -40,7 +40,12 @@ class Alarm:
 	def refresh(self):
 		global alarmPressed
 		##
-		G.alarmPressed = True
+		if G.lastCallPressed[0] == True:
+			G.alarmPressed[0] = True
+		if G.lastCallPressed[1] == True:
+			G.alarmPressed[1] = True
+		if G.lastCallPressed[2] == True:
+			G.alarmPressed[2] = True
 		##
 		#stop blinker
 		self.unSet()

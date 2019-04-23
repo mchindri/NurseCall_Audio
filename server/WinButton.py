@@ -35,9 +35,21 @@ class WinButton(object):
 	
 	def refresh(self):
 		if self.id == 5:
-			if G.callPressed == False:
-				G.callPressed = True
-			print ('Pressed Room 5')
+			if G.callPressed[G.ROOM1] == False:
+				G.callPressed[G.ROOM1] = True
+				G.lastCallPressed[G.ROOM1] = True
+				
+			print ('Pressed Room 1')
+		if self.id == 6:
+			if G.callPressed[G.ROOM2] == False:
+				G.callPressed[G.ROOM2] = True
+				G.lastCallPressed[G.ROOM2] = True
+			print ('Pressed Room 2')
+		if self.id == 14:
+			if G.callPressed[G.ROOM3] == False:
+				G.callPressed[G.ROOM3] = True
+				G.lastCallPressed[G.ROOM3] = True
+			print ('Pressed Room 3')
 		D.P("Refresh button " + str(self.name))
 		relayCommand.unsetRelay(self.relayId)
 		self.blinker.stop()

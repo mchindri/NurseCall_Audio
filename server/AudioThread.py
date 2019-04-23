@@ -79,7 +79,7 @@ class ServerThread(Thread):
 				self.stream.stop_stream()
 				self.stream.close()
 			if self.p:
-				self.p.terminate();
+				self.p.terminate()
 			if self.s:
 				self.s.close()
 
@@ -105,7 +105,7 @@ class ServerThread(Thread):
 			self.stream.stop_stream()
 			self.stream.close()
 		if self.p:
-			self.p.terminate();
+			self.p.terminate()
 		if self.s:
 			self.s.close()
 		
@@ -143,7 +143,7 @@ class ClientThread(Thread):
 				self.stream.stop_stream()
 				self.stream.close()
 			if self.p:
-				self.p.terminate();
+				self.p.terminate()
 			if self.s:
 				self.s.close()
 
@@ -164,7 +164,7 @@ class ClientThread(Thread):
 			self.stream.stop_stream()
 			self.stream.close()
 		if self.p:
-			self.p.terminate();
+			self.p.terminate()
 		if self.s:
 			self.s.close()
 

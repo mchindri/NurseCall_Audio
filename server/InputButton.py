@@ -39,7 +39,11 @@ class InputButton(object):
 	def addEvent(self):
 		D.P("Setting callback for button " + str(self.buttonID))	
 		if self.buttonID == 5:
-			event.on_change += self.activateSwitch
+			event[ROOM1].on_change += self.activateSwitch
+		if self.buttonID == 6:
+			event[ROOM2].on_change += self.activateSwitch
+		if self.buttonID == 14:
+			event[ROOM3].on_change += self.activateSwitch
 		GPIO.add_event_detect(self.buttonID, GPIO.RISING,
 								callback = self.activateSwitch) 
 

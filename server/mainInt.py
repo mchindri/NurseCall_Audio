@@ -16,8 +16,9 @@ def main():
 	
 	alarm = Alarm()
 
-	myMain.do()   
 
+	myMain.do()
+	sys.stdout = open('/home/pi/Desktop/log.txt', 'w')
 	myInterface = Interface(buttons, alarm)
 	myInterface.start()
 

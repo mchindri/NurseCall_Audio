@@ -14,7 +14,7 @@ SOS_BUTTON = 24
 
 
 #ipInitialization
-SERVER_IP = '192.168.1.113'
+SERVER_IP = '192.168.43.180'
 MESSAGES_PORT = 50007
 
 #states
@@ -24,6 +24,41 @@ S_CALL = 3
 
 
 audio = AudioThread(SERVER_IP)
+
+def sendAudio(server):
+	CHUNK = 1024
+	wf = wave.open('myAudio.wav', 'rb')
+	p = pyaudio.PyAudio()
+
+	'''
+	# open stream (2)
+	stream = p.open(format=p.get_format_from_width(wf.getsampwidth()),
+					channels=wf.getnchannels(),
+					rate=wf.getframerate(),
+					output=True)
+	'''
+
+	print(['format: ', str(wf.getsampwidth())])
+	print(['channels: ', str(wf.getnchannels)])
+	print(['rate: ', str(wf.getframerate)])
+	# read data
+	data = wf.readframes(CHUNK)
+	while len(data) > 0:
+		server.sendall(data)
+		data = wf.readframes(CHUNK)
+	
+	# play stream (3)
+	'''
+	while len(data) > 0:
+		stream.write(data)
+		data = wf.readframes(CHUNK)
+	'''
+	# stop stream (4)
+	#stream.stop_stream()
+	#stream.close()
+
+	# close PyAudio (5)
+	p.terminate()
 
 
 def readButtons():
@@ -74,8 +109,10 @@ def main():
 
 		s.settimeout(1.0)	
 
+		sendAudio(s)
+		'''
 		while (True):
-			'''
+		
 			buttons = readButtons()
 			serverMsg = ""
 			try:
@@ -86,13 +123,20 @@ def main():
 	
 			respondToServer(state, s)
 			doActions(state)
-			'''
+			
 			#
-			s.sendall("Salut")
-			msg = s.recv(1024)
-			print(['Received from server ', msg ])
-			#
+			
+			s.sendall(b'Salut\n')
+			msg =''
+			try:
+				msg = s.recv(1024)
+			except socket.timeout:
+				pass
+			print(['Received from server ', str(msg) ])
+
 			time.sleep(1.0)
+		'''
+			#
 	finally:
 		s.close()
 		print('Socket deleted')
